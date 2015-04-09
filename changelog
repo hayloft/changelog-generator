@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2015 Hayloft-IT GmbH (http://www.hayloft-it.ch)
  */
 
-require_once __DIR__ . '/../hayloft/changelog-generator/config.php';
+require_once __DIR__ . '/config.php';
 require_once 'changelog.php';
 
 if (!isset($argv[1])) {
