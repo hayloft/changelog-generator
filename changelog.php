@@ -1,10 +1,10 @@
 <?php
 /**
- * OfficeX: OX (http://ox.hayloft-it.ch/)
+ * Changelog Generator
  *
  * @author    David Spoerri <ds@hayloft-it.ch>
- * @link      https://github.com/hayloft/ox
- * @copyright Copyright (c) 2014 Hayloft-IT GmbH (http://www.hayloft-it.ch)
+ * @link      https://github.com/hayloft/changelog-generator
+ * @copyright Copyright (c) 2015 Hayloft-IT GmbH (http://www.hayloft-it.ch)
  */
 
 require_once __DIR__ . '/config.php';
