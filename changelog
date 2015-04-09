@@ -9,10 +9,10 @@
  */
 
 require_once __DIR__ . '/config.php';
-require_once 'changelog.php';
+require_once getcwd() . '/.changelog.php';
 
 if (!isset($argv[1])) {
-    die('Please provide a branch, tag or commit id, from which the changelog should be generated.');
+    die('Please provide a branch, tag or commit id, from which the changelog should be generated.' . PHP_EOL);
 }
 
 $oldCommit = get_commit_id($argv[1], '.');
