@@ -1,0 +1,30 @@
+{
+  "name": "hayloft/changelog-generator",
+  "description": "Changelog Generator.",
+  "type": "library",
+  "keywords": [
+    "changelog"
+  ],
+  "homepage": "http://hayloft-it.ch/",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "David Spoerri",
+      "email": "ds@hayloft-it.ch"
+    },
+    {
+      "name": "Benjamin Conrad",
+      "email": "bc@hayloft-it.ch"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.3.3"
+  },
+  "bin": [
+    "changelog"
+  ],
+  "config": {
+    "bin-dir": "bin"
+  }
+}

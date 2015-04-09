@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 /**
  * Changelog Generator
@@ -8,6 +9,7 @@
  */
 
 require_once __DIR__ . '/config.php';
+require_once 'changelog.php';
 
 if (!isset($argv[1])) {
     die('Please provide a branch, tag or commit id, from which the changelog should be generated.');
@@ -65,14 +67,16 @@ foreach ($currentPackages as $package) {
 
         foreach ($changes as $id => $message) {
             $message = $replaceTrackerLinks($message);
-            $message .= ' ([diff](' . $getVcsUrl($package->name, $id) . '))';
+            $message .= ' [(diff)](' . $getVcsUrl($package->name, $id) . ')';
 
             $output .= '- ' . $message . PHP_EOL;
         }
+
+        $output .= PHP_EOL;
     }
 }
 
-add_log_file_contents($logFilePath, $output, $logFileOffset, 1);
+add_log_file_contents($logFilePath, $output);
 
 /**
  * Gets a list from composer content
@@ -148,19 +152,13 @@ function get_changes($path, $to, $from = null) {
  *
  * @param string $logfilePath
  * @param string $content
- * @param int $offset amount of characters after which to add the text to the file
- * @param int $newLines amount of newlines after the aded text
  */
-function add_log_file_contents($logfilePath, $content, $offset, $newLines = 0) {
-    // one newline is added after a change line
-    $newLines -= 1;
-    for ($i = 0; $i <= $newLines; $i++) {
-        $content .= PHP_EOL;
-    }
-
+function add_log_file_contents($logfilePath, $content) {
     $existingLog = file_get_contents($logfilePath);
+    $existingLog = str_replace('# CHANGELOG' . PHP_EOL, '', $existingLog);
 
-    $newLog = substr_replace($existingLog, $content, $offset, 0);
+    $newLog = '# CHANGELOG' . PHP_EOL . PHP_EOL . $content . $existingLog;
+
     file_put_contents($logfilePath, $newLog);
 }
 
