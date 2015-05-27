@@ -35,7 +35,7 @@ $oldPackages = get_package_list($oldComposerContent, $packageNames);
 $currentPackages = get_package_list($newComposerContent, $packageNames);
 $output = '';
 
-$output .= '##  ' . $version . ' (' . date('Y-m-d') . ')' . PHP_EOL;
+$output .= '## ' . $version . ' (' . date('Y-m-d') . ')' . PHP_EOL;
 
 foreach ($currentPackages as $package) {
     $toCommit = $package->source->reference;
@@ -63,7 +63,7 @@ foreach ($currentPackages as $package) {
     $changes = get_changes($moduleDirectory, $toCommit, $fromCommit);
 
     if (count($changes) >= 1) {
-        $output .= '### ' . $getPackagePath($package->name) . PHP_EOL;
+        $output .= '### ' . (isset($getPackageName) ? $getPackageName($package) : $getPackagePath($package->name)) . PHP_EOL;
 
         foreach ($changes as $id => $message) {
             $message = $replaceTrackerLinks($message);
@@ -193,3 +193,4 @@ function get_commit_id($revision, $repositoryPath) {
 
     return substr($shellOutput, 0, 40);
 }
+
