@@ -20,14 +20,8 @@ if (null == $oldCommit) {
     die('Unable to find old commit ID!');
 }
 
-if (isset($argv[2])) {
-    $newComposerContent = get_composer_content($argv[2],$composerFile);
-    $version = $argv[2];
-} else {
-    $version = trim(shell_exec('git rev-parse --abbrev-ref HEAD'));
-    echo 'No new commit id provided. Using current status of composer file.' . PHP_EOL;
-    $newComposerContent = json_decode(file_get_contents($composerPath));
-}
+$newComposerContent = json_decode(file_get_contents($composerPath));
+$version = $argv[2];
 
 $oldComposerContent = get_composer_content($oldCommit, $composerFile);
 
